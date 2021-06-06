@@ -17,21 +17,18 @@ void ft_putstr (char* str)
 }
 char* War_victor (int angel_wincount)
 {
-	char* victor=NULL;
-	//victor= (angel_wincount == 2) ? "angel":"demon";
+	char* victor=malloc(40);
+	//victor= (angel_wincount == 2) ? "Ag":"demon";
 	if (angel_wincount == 2)
 	{
-		victor="angel";
+		victor="The winner of the war is the Angel";
 	}
 	else
 	{
-		victor="demon";
-	}
-	if (victor =NULL)
-	{
-		return("merde");
+		victor="The winner of the war is the Demon";
 	}
 	return (victor);
+	free(victor);
 }
 
 int is_action_valid(int action)
@@ -58,10 +55,11 @@ int get_action(void)
 }
 int main(void)
 {
-	int angel_wincount=0;
+	int angel_wincount=2;
 	int demon_wincount=0;
 	int compteur=0;
 	puts("Welcome to the World of Angels's Crypt United");
+	
 	while(compteur<3)
 	{
 		int angel_action = get_action();
@@ -85,6 +83,6 @@ int main(void)
 		}
 		compteur++;
 	}
-	printf("the winnerof the war is ");
+
 	ft_putstr(War_victor(angel_wincount));
 }
