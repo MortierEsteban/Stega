@@ -1,15 +1,39 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
-int ft_putchar (char c)
+void ft_putchar (char c)
 {
+	write(1,&c,1);
+}
+void ft_putstr (char* str)
+{
+	int i;
+	i=0;
+	while (str[i])
+	{
+		ft_putchar (str[i]);
+		i++;
+	}
+}
+char* War_victor (int angel_wincount)
+{
+	char* victor=NULL;
+	//victor= (angel_wincount == 2) ? "angel":"demon";
+	if (angel_wincount == 2)
+	{
+		victor="angel";
+	}
+	else
+	{
+		victor="demon";
+	}
+	if (victor =NULL)
+	{
+		return("merde");
+	}
+	return (victor);
+}
 
-	write(1,&c;1);
-}
-int War_victor (int angel_wincount)
-{
-	char victor= (angel_wincount == 2) ? angel:demon;
-	return victor;
-}
 int is_action_valid(int action)
 {
 	return action >=1 && action <= 3;
@@ -36,29 +60,31 @@ int main(void)
 {
 	int angel_wincount=0;
 	int demon_wincount=0;
+	int compteur=0;
 	puts("Welcome to the World of Angels's Crypt United");
-	for (int i=0;i<3;i++)
+	while(compteur<3)
 	{
 		int angel_action = get_action();
 		int demon_action = get_action();
-		if (demon_wincount == 2 || angel_wincount ==2)
+		if (demon_wincount != 2 || angel_wincount !=2)
 		{
 			if (demon_action == angel_action)
 			{
-				puts ("It's a Draw");
+				printf ("It's a Draw");
 			}
 			if (angel_action ==1 &&demon_action ==3 ||angel_action == 2 && demon_action == 1||angel_action ==3 && demon_action == 2 )
 			{
-				puts("The Angel Won!");
+				printf("The Angel Won!");
 				angel_wincount++;
 			}
 			else
 			{
-				puts ("The Demon Won...");
+				printf ("The Demon Won...");
 				demon_wincount++;
 			}
 		}
-	push ("After this war only one remains, The ");
-	ft_putchar(War_victor);
+		compteur++;
 	}
+	printf("the winnerof the war is ");
+	ft_putstr(War_victor(angel_wincount));
 }
